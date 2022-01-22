@@ -1,0 +1,19 @@
+<table>
+    <tbody>
+        <span>Enter colors as valid CSS color expressions, e.g. #caffee or rgb(202, 255, 238)</span>
+        <input type="hidden" id="settings_priority_colors_priorities"
+               value="<%= IssuePriority.all.map{|p|p.id}.join(",") %>"
+               name="settings[priority_colors_priorities]" >
+        <% IssuePriority.all.each do |prio| %>
+        <tr>
+            <th><%= prio.name %></th>
+            <td>
+                <input type="text" id="settings_priority_colors_priority_<%= prio.id.to_s %>"
+                       value="<%= settings['priority_colors_priority_' + prio.id.to_s] %>"
+                       name="settings[priority_colors_priority_<%= prio.id.to_s %>]"
+                       style="background-color: <%= settings['priority_colors_priority_' + prio.id.to_s] %>;" />
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
